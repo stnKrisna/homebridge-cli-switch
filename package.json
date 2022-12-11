@@ -1,6 +1,6 @@
 {
   "name": "homebridge-cli-switch",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "CLI switch plugin for homebridge: https://github.com/nfarina/homebridge",
   "license": "MIT",
   "keywords": [
