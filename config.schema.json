@@ -1,0 +1,63 @@
+{
+  "pluginAlias": "CLI-Switch",
+  "pluginType": "accessory",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "default": "CLI",
+        "minLength": 1,
+        "required": true
+      },
+
+      "on": {
+        "title": "Activation Command",
+        "type": "string",
+        "default": "",
+        "minLength": 1,
+        "required": true
+      },
+
+      "off": {
+        "title": "Deactivation Command",
+        "type": "string",
+        "default": "",
+        "minLength": 1,
+        "required": true
+      },
+
+      "state": {
+        "title": "Get State Command",
+        "type": "string",
+        "default": "",
+        "minLength": 1,
+        "required": true
+      },
+
+      "on_value": {
+        "title": "State Output When Active",
+        "type": "string",
+        "default": "",
+        "minLength": 1,
+        "required": true
+      },
+
+      "exact_match": {
+        "title": "Exact Match Output Check",
+        "type": "boolean",
+        "default": true
+      },
+
+      "exec_timeout": {
+        "title": "Execution Timeout (in milliseconds)",
+        "type": "integer",
+        "placeholder": 5000,
+        "minimum": 0,
+        "default": 5000,
+        "required": false
+      }
+    }
+  }
+}
