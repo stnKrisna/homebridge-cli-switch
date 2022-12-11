@@ -6,24 +6,18 @@
     "pin": "031-45-154"
   },
 
-  "description": "This is an example configuration for the SSH homebridge plugin",
+  "description": "This is an example configuration for the CLI switch homebridge plugin",
 
   "accessories": [
     {
-      "accessory": "SSH",
-      "name": "iTunes Music",
-      "on": "osascript -e 'tell application \"iTunes\" to play'",
-      "off": "osascript -e 'tell application \"iTunes\" to stop'",
-      "state": "osascript -e 'tell application \"iTunes\" to get player state'",
-      "on_value" : "playing",
+      "accessory": "CLI",
+      "name": "Bedroom TV",
+      "on": "caffeinate -u -t 5",
+      "off": "pmset displaysleepnow",
+      "state": "ioreg -n IODisplayWrangler | grep -i IOPowerManagement | perl -pe 's/^.*DevicePowerState\"=([0-9]+).*$/\\1/'",
+      "on_value": "4",
       "exact_match": true,
-      "ssh" : {
-        "user": "me",
-        "host": "mymac",
-        "port": 22,
-        "password": "password (or use key)",
-        "key": "path to private key file",
-      }
+      "exec_timeout": 5000
     }
   ]
 }
