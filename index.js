@@ -9,7 +9,7 @@ const DEFAULT_TIMEOUT = 5000;
 module.exports = function(homebridge) {
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
-  homebridge.registerAccessory('homebridge-cli', 'CLI', CliAccessory);
+  homebridge.registerAccessory('homebridge-cli-switch', 'CLI-Switch', CliAccessory);
 }
 
 function CliAccessory(log, config) {
