@@ -113,16 +113,20 @@ class CliAccessory {
   }
 
   getAccessoryType () {
+    const characteristics = {
+      set: this.setState.bind(this),
+      get: this.stateCommand ? this.getState.bind(this) : undefined
+    };
+
     if (this.switchService === undefined) {
-      let switchService = new Service.Switch(this.name);
-      let characteristic = switchService.getCharacteristic(Characteristic.On)
-        .on('set', this.setState.bind(this));
+      this.switchService = new Service.Switch(this.name);
+      let characteristic = this.switchService.getCharacteristic(Characteristic.On);
 
-      if (this.stateCommand) {
-        characteristic.on('get', this.getState.bind(this))
-      };
-
-      this.switchService = switchService;
+      Object.keys(characteristics).forEach((key) => {
+        if (characteristics[key] !== undefined) {
+          characteristic.on(key, characteristics[key]);
+        }
+      });
     }
 
     return this.switchService;
