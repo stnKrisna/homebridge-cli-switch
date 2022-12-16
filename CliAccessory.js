@@ -20,6 +20,12 @@ class CliAccessory {
     this.exactMatch = config['exact_match'] || true;
     this.execTimeout = config['exec_timeout'] || DEFAULT_TIMEOUT;
 
+    this.accInfo = {
+      manufacturer: config['manufacturer'] || 'CLI Manufacturer',
+      model: config['model'] || 'CLI Model',
+      serial_number: config['serial_number'] || 'CLI Serial Number',
+    };
+
     this.exec = execFunc === null ?
       require('child_process').exec :
       execFunc;
@@ -89,12 +95,18 @@ class CliAccessory {
   }
 
   getAccessoryInfo () {
+    const configurable = {
+      manufacturer: Characteristic.Manufacturer,
+      model: Characteristic.Model,
+      serial_number: Characteristic.SerialNumber,
+    };
+
     if (this.informationService === undefined) {
       this.informationService = new Service.AccessoryInformation();
-      this.informationService
-        .setCharacteristic(Characteristic.Manufacturer, 'CLI Manufacturer')
-        .setCharacteristic(Characteristic.Model, 'CLI Model')
-        .setCharacteristic(Characteristic.SerialNumber, 'CLI Serial Number');
+
+      Object.keys(configurable).forEach(key => {
+        this.informationService.setCharacteristic(configurable[key], this.accInfo[key])
+      })
     }
 
     return this.informationService;

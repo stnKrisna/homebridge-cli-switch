@@ -57,6 +57,24 @@
         "minimum": 0,
         "default": 5000,
         "required": false
+      },
+
+      "manufacturer": {
+        "title": "Manufacturer",
+        "type": "string",
+        "required": false
+      },
+
+      "model": {
+        "title": "Model",
+        "type": "string",
+        "required": false
+      },
+
+      "serial_number": {
+        "title": "Serial Number",
+        "type": "string",
+        "required": false
       }
     }
   }
