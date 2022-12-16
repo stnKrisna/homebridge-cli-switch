@@ -4,7 +4,7 @@ let Service;
 let Characteristic;
 
 class CliAccessory {
-  constructor(log, config, homebridge, execFunc = null) {
+  constructor (log, config, homebridge, execFunc = null) {
     Service = homebridge.hap.Service;
     Characteristic = homebridge.hap.Characteristic;
 
@@ -31,7 +31,7 @@ class CliAccessory {
       execFunc;
   }
 
-  execCommand(command, timeout) {
+  execCommand (command, timeout) {
     if (Number.isNaN(timeout)) {
       timeout = DEFAULT_TIMEOUT
     }
@@ -53,7 +53,7 @@ class CliAccessory {
     })
   }
 
-  matchesString(match) {
+  matchesString (match) {
     if (this.exactMatch) {
       return (match === this.onValue);
     } else {
@@ -61,7 +61,7 @@ class CliAccessory {
     }
   }
 
-  setState(powerOn, callback) {
+  setState (powerOn, callback) {
     var accessory = this;
     var state = powerOn ? 'on' : 'off';
     var prop = state + 'Command';
@@ -78,7 +78,7 @@ class CliAccessory {
       });
   }
 
-  getState(callback) {
+  getState (callback) {
     var accessory = this;
     var command = accessory['stateCommand'];
 
@@ -132,7 +132,7 @@ class CliAccessory {
     return this.switchService;
   }
 
-  getServices() {
+  getServices () {
     return [this.getAccessoryInfo(), this.getAccessoryType()];
   }
 };
