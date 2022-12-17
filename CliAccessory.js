@@ -64,17 +64,17 @@ class CliAccessory {
   setState (powerOn, callback) {
     var accessory = this;
     var state = powerOn ? 'on' : 'off';
-    var prop = state + 'Command';
+    var prop = `${state}Command`;
     var command = accessory[prop];
 
     this.execCommand(command, this.execTimeout)
       .then(() => {
-        accessory.log('Set ' + accessory.name + ' to ' + state);
+        accessory.log(`Set ${accessory.name} to ${state}`);
         callback(null);
       })
       .catch(error => {
         accessory.log('Error: ' + error);
-        callback(error || new Error('Error setting ' + accessory.name + ' to ' + state));
+        callback(error || new Error(`Error setting ${accessory.name} to ${state}`));
       });
   }
 
@@ -85,12 +85,12 @@ class CliAccessory {
     this.execCommand(command, this.execTimeout)
       .then((stdout) => {
         var state = stdout.toString('utf-8').trim().toLowerCase();
-        accessory.log('State of ' + accessory.name + ' is: ' + state);
+        accessory.log(`State of ${accessory.name} is: ${state}`);
         callback(null, accessory.matchesString(state));
       })
       .catch(error => {
         accessory.log('Error: ' + error);
-        callback(error || new Error('Error getting state of ' + accessory.name));
+        callback(error || new Error(`Error getting state of ${accessory.name}`));
       });
   }
 
